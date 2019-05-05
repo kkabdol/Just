@@ -1,2 +1,4 @@
 # Just
-Just Engine based on Hazel Engine by TheCherno
+Just Engine
+
+Based on Hazel Engine by TheCherno
