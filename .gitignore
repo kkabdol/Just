@@ -1,0 +1,6 @@
+# Build Output
+bin/
+bin-int/
+
+# Visual Studio Specific Output
+.vs/
