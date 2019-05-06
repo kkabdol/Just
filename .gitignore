@@ -1,6 +1,7 @@
-# Build Output
+# Directories
+.vs/
 bin/
 bin-int/
 
-# Visual Studio Specific Output
-.vs/
+# Files
+.user
