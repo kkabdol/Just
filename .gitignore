@@ -1,7 +1,12 @@
 # Directories
-.vs/
-bin/
-bin-int/
+bin/*
+bin-int/*
 
 # Files
+
+# Visual Studio files
+.vs/
+*.sln
+*.vcxproj
+*.filters
 *.user
