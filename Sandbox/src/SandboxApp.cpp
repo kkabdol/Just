@@ -5,12 +5,16 @@ class Sandbox : public Just::Application
 public:
 	Sandbox()
 	{
-
+		JST_INFO( "Created Sandbox!" );
 	}
 
 	~Sandbox()
 	{
 
+	}
+
+	void Run()
+	{
 	}
 };
 

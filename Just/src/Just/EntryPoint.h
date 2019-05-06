@@ -6,6 +6,8 @@ extern Just::Application* Just::CreateApplication();
 
 int main( int argc, char** argv )
 {
+	Just::Log::Init();
+	
 	auto app = Just::CreateApplication();
 	app->Run();
 	delete app;
