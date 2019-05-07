@@ -7,6 +7,8 @@
 
 namespace Just
 {
+	template class JUST_API std::shared_ptr< spdlog::logger >;
+
 	class JUST_API Log
 	{
 	public:
