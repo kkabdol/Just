@@ -13,3 +13,5 @@
 #error Just only supports Windows!
 
 #endif // JST_PLATFORM_WINDOWS
+
+#define BIT(x) (1 << x)
