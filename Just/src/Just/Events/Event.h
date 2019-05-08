@@ -46,6 +46,7 @@ namespace Just
 
 		inline bool IsInCategory( EventCategory category )
 		{
+			return ( GetCategoryFlags() & category ) != 0;
 		}
 
 	protected:
