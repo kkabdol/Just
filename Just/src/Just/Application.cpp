@@ -1,3 +1,4 @@
+#include "jstpch.h"
 #include "Application.h"
 
 #include "Just/Events/ApplicationEvent.h"

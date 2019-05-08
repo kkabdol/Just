@@ -2,8 +2,6 @@
 
 #include "Event.h"
 
-#include <sstream>
-
 namespace Just
 {
 	class JUST_API KeyEvent : public Event

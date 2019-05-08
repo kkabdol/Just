@@ -2,9 +2,6 @@
 
 #include "Just/Core.h"
 
-#include <string>
-#include <functional>
-
 namespace Just
 {
 	// Events in Just are currently blocking, meaning when an event occurs it
@@ -49,7 +46,6 @@ namespace Just
 
 		inline bool IsInCategory( EventCategory category )
 		{
-			return GetCategoryFlags() & category;
 		}
 
 	protected:
