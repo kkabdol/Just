@@ -1,108 +1,120 @@
 workspace "Just"
     architecture "x64"
+    startproject "Sandbox"
 
     configurations
     {
         "Debug",
         "Release",
-        "Dist"
-    }
+        "Distribution"
+    }    
     
-    startproject "Sandbox"
+    outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
-outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
+    -- Include directories relative to root folder (solution directory)
+    IncludeDir = {}
+    IncludeDir["glfw"] = "Just/vendor/glfw/include"
 
-project "Just"
-    location "Just"
-    kind "SharedLib"
-    language "C++"
+    include "Just/vendor/glfw"
 
-    targetdir ("bin/" .. outputdir .. "/%{prj.name}")
-    objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
+    project "Just"
+        location "Just"
+        kind "StaticLib"
+        language "C++"
 
-    files
-    {
-        "%{prj.name}/src/**.h",
-        "%{prj.name}/src/**.cpp"
-    }
+        targetdir ("bin/" .. outputdir .. "/%{prj.name}")
+        objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 
-    includedirs
-    {
-        "%{prj.name}/src",
-        "%{prj.name}/vendor/spdlog/include"
-    }
-
-    filter "system:windows"
-        cppdialect "Default"
-        staticruntime "off"
-        systemversion "latest"
+        files
+        {
+            "%{prj.name}/src/**.h",
+            "%{prj.name}/src/**.cpp"
+        }
 
         defines
         {
-            "JST_PLATFORM_WINDOWS",
-            "JST_BUILD_DLL"
+            "_CRT_SECURE_NO_WARNINGS"
         }
 
-        postbuildcommands
+        includedirs
         {
-            ("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/Sandbox")
+            "%{prj.name}/src",
+            "%{prj.name}/vendor/spdlog/include",
+            "%{IncludeDir.glfw}"
         }
 
-    filter "configurations:Debug"
-        defines "JST_DEBUG"
-        symbols "On"
+        links
+        {
+            "glfw",
+            "opengl32.lib"
+        }
 
-    filter "configurations:Release"
-        defines "JST_RELEASE"
-        optimize "On"
+        filter "system:windows"
+            cppdialect "Default"
+            staticruntime "on"
+            systemversion "latest"
 
-    filter "configurations:Dist"
-        defines "JST_DIST"
-        optimize "On"
+            defines
+            {
+                "JST_PLATFORM_WINDOWS",
+                "JST_BUILD_DLL"
+            }
 
-project "Sandbox"
-    location "Sandbox"
-	kind "ConsoleApp"
-    language "C++"
+        filter "configurations:Debug"
+            defines "JST_DEBUG"
+            symbols "On"
 
-    targetdir ("bin/" .. outputdir .. "/%{prj.name}")
-    objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
+        filter "configurations:Release"
+            defines "JST_RELEASE"
+            optimize "On"
 
-	files
-    {
-        "%{prj.name}/src/**.h",
-        "%{prj.name}/src/**.cpp"
-    }
+        filter "configurations:Distribution"
+            defines "JST_DISTRIBUTION"
+            optimize "On"
 
-    includedirs
-    {
-        "Just/vendor/spdlog/include",
-		"Just/src"
-    }
-
-	links
-	{
-		"Just"
-	}
-
-    filter "system:windows"
+    project "Sandbox"
+        location "Sandbox"
+        kind "ConsoleApp"
+        language "C++"
         cppdialect "Default"
-        staticruntime "off"
-        systemversion "latest"
+        staticruntime "on"
 
-        defines
+        targetdir ("bin/" .. outputdir .. "/%{prj.name}")
+        objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
+
+        files
         {
-            "JST_PLATFORM_WINDOWS"
+            "%{prj.name}/src/**.h",
+            "%{prj.name}/src/**.cpp"
         }
 
-    filter "configurations:Debug"
-        defines "JST_DEBUG"
-        symbols "On"
+        includedirs
+        {
+            "Just/vendor/spdlog/include",
+            "Just/src"
+        }
 
-    filter "configurations:Release"
-        defines "JST_RELEASE"
-        optimize "On"
+        links
+        {
+            "Just"
+        }
 
-    filter "configurations:Dist"
-        defines "JST_DIST"
-        optimize "On"
+        filter "system:windows"
+            systemversion "latest"
+
+            defines
+            {
+                "JST_PLATFORM_WINDOWS"
+            }
+
+        filter "configurations:Debug"
+            defines "JST_DEBUG"
+            symbols "On"
+
+        filter "configurations:Release"
+            defines "JST_RELEASE"
+            optimize "On"
+
+        filter "configurations:Distribution"
+            defines "JST_DISTRIBUTION"
+            optimize "On"
