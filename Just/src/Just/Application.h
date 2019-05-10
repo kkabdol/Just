@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Just/Core.h"
+#include "Just/Window.h"
 
 namespace Just
 {
@@ -11,6 +12,9 @@ namespace Just
 		virtual ~Application();
 
 		void Run();
+	private:
+		std::unique_ptr< Window > m_Window;
+		bool m_Running = true;
 	};
 
 	// To be defined in CLIENT
