@@ -25,6 +25,9 @@ workspace "Just"
         targetdir ("bin/" .. outputdir .. "/%{prj.name}")
         objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 
+		pchheader "jstpch.h"
+        pchsource "Just/src/jstpch.cpp"
+
         files
         {
             "%{prj.name}/src/**.h",
