@@ -4,10 +4,15 @@
 #include "Just/Window.h"
 #include "Just/Events/ApplicationEvent.h"
 
+#pragma warning( push )
+#pragma warning( disable : 4251 )
 namespace Just
 {
+	template class JUST_API std::unique_ptr< Window >;
+
 	class JUST_API Application
 	{
+	
 	public:
 		Application();
 		virtual ~Application();
@@ -25,4 +30,4 @@ namespace Just
 	// To be defined in CLIENT
 	Application* CreateApplication();
 }
-
+#pragma warning( pop )

@@ -19,7 +19,7 @@ workspace "Just"
 
     project "Just"
         location "Just"
-        kind "StaticLib"
+        kind "SharedLib"
         language "C++"
 
         targetdir ("bin/" .. outputdir .. "/%{prj.name}")
@@ -36,7 +36,7 @@ workspace "Just"
 
         defines
         {
-            "_CRT_SECURE_NO_WARNINGS"
+			"_CRT_SECURE_NO_WARNINGS"
         }
 
         includedirs
@@ -54,12 +54,13 @@ workspace "Just"
 
         filter "system:windows"
             cppdialect "Default"
-            staticruntime "on"
+            staticruntime "off"
             systemversion "latest"
 
             defines
             {
                 "JST_PLATFORM_WINDOWS",
+				"JST_DYNAMIC_LINK",
                 "JST_BUILD_DLL"
             }
 
@@ -80,7 +81,7 @@ workspace "Just"
         kind "ConsoleApp"
         language "C++"
         cppdialect "Default"
-        staticruntime "on"
+        staticruntime "off"
 
         targetdir ("bin/" .. outputdir .. "/%{prj.name}")
         objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -102,12 +103,18 @@ workspace "Just"
             "Just"
         }
 
+		prebuildcommands
+		{
+			("{COPY} ../bin/" .. outputdir .. "/Just/Just.dll %{cfg.buildtarget.directory}" ) 
+		}
+
         filter "system:windows"
             systemversion "latest"
 
             defines
             {
-                "JST_PLATFORM_WINDOWS"
+                "JST_PLATFORM_WINDOWS",
+				"JST_DYNAMIC_LINK"
             }
 
         filter "configurations:Debug"
