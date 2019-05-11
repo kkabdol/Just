@@ -12,6 +12,8 @@
 #include <unordered_map>
 #include <unordered_set>
 
+#include "Just/Log.h"
+
 #ifdef JST_PLATFORM_WINDOWS
 #include <Windows.h>
 #endif // JST_PLATFORM_WINDOWS
