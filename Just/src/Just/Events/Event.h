@@ -36,9 +36,9 @@ namespace Just
 
 	class JUST_API Event
 	{
-		friend class EventDispatcher;
-
 	public:
+		bool handled = false;
+		
 		virtual EventType GetEventType() const = 0;
 		virtual const char* GetName() const = 0;
 		virtual int GetCategoryFlags() const = 0;
@@ -48,9 +48,6 @@ namespace Just
 		{
 			return ( GetCategoryFlags() & category ) != 0;
 		}
-
-	protected:
-		bool m_Handled = false;
 	};
 
 	class EventDispatcher
@@ -66,7 +63,7 @@ namespace Just
 		{
 			if( m_Event.GetEventType() == T::GetStaticType() )
 			{
-				m_Event.m_Handled = func( *( T* )&m_Event );
+				m_Event.handled = func( *( T* )&m_Event );
 				return true;
 			}
 			return false;

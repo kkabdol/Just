@@ -35,6 +35,25 @@ namespace Just
 		dispatcher.Dispatch< WindowCloseEvent >( BIND_EVENT_FN( OnWindowClose ) );
 
 		JST_CORE_TRACE( "{0}", e );
+
+		for( auto it = m_LayerStack.end(); it != m_LayerStack.begin(); )
+		{
+			( *--it )->OnEvent( e );
+			if( e.handled )
+			{
+				break;
+			}
+		}
+	}
+
+	void Application::PushLayer( Layer * layer )
+	{
+		m_LayerStack.PushLayer( layer );
+	}
+
+	void Application::PushOverlay( Layer * layer )
+	{
+		m_LayerStack.PushOverlay( layer );
 	}
 
 	bool Application::OnWindowClose( WindowCloseEvent & e )

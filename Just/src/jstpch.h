@@ -16,4 +16,6 @@
 
 #ifdef JST_PLATFORM_WINDOWS
 #include <Windows.h>
+
+#pragma warning( disable : 4251 )
 #endif // JST_PLATFORM_WINDOWS

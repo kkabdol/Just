@@ -1,11 +1,30 @@
 #include <Just.h>
 
+class ExampleLayer : public Just::Layer
+{
+public:
+	ExampleLayer()
+		: Layer( "Example" )
+	{
+	}
+
+	virtual void OnUpdate() override
+	{
+		JST_INFO( "ExampleLayer::Update" );
+	}
+
+	virtual void OnEvent( Just::Event& event ) override
+	{
+		JST_TRACE( "{0}", event );
+	}
+};
+
 class Sandbox : public Just::Application
 {
 public:
 	Sandbox()
 	{
-		JST_INFO( "Created Sandbox!" );
+		PushLayer( new ExampleLayer );
 	}
 
 	~Sandbox()
