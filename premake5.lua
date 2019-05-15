@@ -14,16 +14,18 @@ workspace "Just"
     -- Include directories relative to root folder (solution directory)
     IncludeDir = {}
     IncludeDir["glfw"] = "Just/vendor/glfw/include"
+    IncludeDir["glad"] = "Just/vendor/glad/include"
 
     include "Just/vendor/glfw"
+    include "Just/vendor/glad"
 
     project "Just"
         location "Just"
         kind "SharedLib"
         language "C++"
 
-        targetdir ("bin/" .. outputdir .. "/%{prj.name}")
-        objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
+        targetdir ("%{wks.location}/bin/" .. outputdir .. "/%{prj.name}")
+        objdir ("%{wks.location}/bin-int/" .. outputdir .. "/%{prj.name}")
 
 		pchheader "jstpch.h"
         pchsource "Just/src/jstpch.cpp"
@@ -43,12 +45,14 @@ workspace "Just"
         {
             "%{prj.name}/src",
             "%{prj.name}/vendor/spdlog/include",
-            "%{IncludeDir.glfw}"
+            "%{IncludeDir.glfw}",
+            "%{IncludeDir.glad}"
         }
 
         links
         {
             "glfw",
+            "glad",
             "opengl32.lib"
         }
 
@@ -61,7 +65,8 @@ workspace "Just"
             {
                 "JST_PLATFORM_WINDOWS",
 				"JST_DYNAMIC_LINK",
-                "JST_BUILD_DLL"
+                "JST_BUILD_DLL",
+                "GLFW_INCLUDE_NONE"
             }
 
         filter "configurations:Debug"
@@ -83,8 +88,8 @@ workspace "Just"
         cppdialect "Default"
         staticruntime "off"
 
-        targetdir ("bin/" .. outputdir .. "/%{prj.name}")
-        objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
+        targetdir ("%{wks.location}/bin/" .. outputdir .. "/%{prj.name}")
+        objdir ("%{wks.location}/bin-int/" .. outputdir .. "/%{prj.name}")
 
         files
         {
