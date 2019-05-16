@@ -15,9 +15,11 @@ workspace "Just"
     IncludeDir = {}
     IncludeDir["glfw"] = "Just/vendor/glfw/include"
     IncludeDir["glad"] = "Just/vendor/glad/include"
+    IncludeDir["imgui"] = "Just/vendor/imgui"
 
     include "Just/vendor/glfw"
     include "Just/vendor/glad"
+    include "Just/vendor/imgui"
 
     project "Just"
         location "Just"
@@ -25,9 +27,10 @@ workspace "Just"
         language "C++"
 
         targetdir ("%{wks.location}/bin/" .. outputdir .. "/%{prj.name}")
+        debugdir ("%{wks.location}/bin/" .. outputdir .. "/%{prj.name}")
         objdir ("%{wks.location}/bin-int/" .. outputdir .. "/%{prj.name}")
-
-		pchheader "jstpch.h"
+        
+        pchheader "jstpch.h"
         pchsource "Just/src/jstpch.cpp"
 
         files
@@ -46,13 +49,15 @@ workspace "Just"
             "%{prj.name}/src",
             "%{prj.name}/vendor/spdlog/include",
             "%{IncludeDir.glfw}",
-            "%{IncludeDir.glad}"
+            "%{IncludeDir.glad}",
+            "%{IncludeDir.imgui}"
         }
 
         links
         {
             "glfw",
             "glad",
+            "imgui",
             "opengl32.lib"
         }
 
@@ -67,6 +72,11 @@ workspace "Just"
 				"JST_DYNAMIC_LINK",
                 "JST_BUILD_DLL",
                 "GLFW_INCLUDE_NONE"
+            }
+
+            postbuildcommands
+            {
+                ("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/Sandbox")
             }
 
         filter "configurations:Debug"
@@ -89,8 +99,9 @@ workspace "Just"
         staticruntime "off"
 
         targetdir ("%{wks.location}/bin/" .. outputdir .. "/%{prj.name}")
+        debugdir ("%{wks.location}/bin/" .. outputdir .. "/%{prj.name}")
         objdir ("%{wks.location}/bin-int/" .. outputdir .. "/%{prj.name}")
-
+        
         files
         {
             "%{prj.name}/src/**.h",
@@ -107,11 +118,6 @@ workspace "Just"
         {
             "Just"
         }
-
-		prebuildcommands
-		{
-			("{COPY} ../bin/" .. outputdir .. "/Just/Just.dll %{cfg.buildtarget.directory}" ) 
-		}
 
         filter "system:windows"
             systemversion "latest"

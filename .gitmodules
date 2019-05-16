@@ -4,3 +4,6 @@
 [submodule "Just/vendor/glfw"]
 	path = Just/vendor/glfw
 	url = https://github.com/kkabdol/glfw.git
+[submodule "Just/vendor/imgui"]
+	path = Just/vendor/imgui
+	url = https://github.com/kkabdol/imgui.git
