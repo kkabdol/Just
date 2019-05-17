@@ -57,4 +57,20 @@ namespace Just
 	private:
 		int m_RepeatCount;
 	};
+
+	class JUST_API KeyTypedEvent : public KeyEvent
+	{
+	public:
+		KeyTypedEvent( int keycode )
+			: KeyEvent( keycode ) {}
+
+		std::string ToString() const override
+		{
+			std::stringstream ss;
+			ss << "KeyTypedEvent: " << GetKeyCode();
+			return ss.str();
+		}
+
+		EVENT_CLASS_TYPE( KeyTyped )
+	};
 }
