@@ -24,10 +24,13 @@ project "glad"
         systemversion "latest"
 
         filter { "system:windows", "configurations:Debug" }
+            runtime "Debug"
             symbols "On"
 
         filter { "system:windows", "configurations:Release" }
+            runtime "Release"
             optimize "On"
         
         filter { "system:windows", "configurations:Distribution" }
+            runtime "Release"
             optimize "On"

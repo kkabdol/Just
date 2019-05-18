@@ -81,14 +81,17 @@ workspace "Just"
 
         filter "configurations:Debug"
             defines "JST_DEBUG"
+            runtime "Debug"
             symbols "On"
 
         filter "configurations:Release"
             defines "JST_RELEASE"
+            runtime "Release"
             optimize "On"
 
         filter "configurations:Distribution"
             defines "JST_DISTRIBUTION"
+            runtime "Release"
             optimize "On"
 
     project "Sandbox"
@@ -130,12 +133,15 @@ workspace "Just"
 
         filter "configurations:Debug"
             defines "JST_DEBUG"
+            runtime "Debug"
             symbols "On"
 
         filter "configurations:Release"
             defines "JST_RELEASE"
+            runtime "Release"
             optimize "On"
 
         filter "configurations:Distribution"
             defines "JST_DISTRIBUTION"
+            runtime "Release"
             optimize "On"
