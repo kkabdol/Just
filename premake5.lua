@@ -17,10 +17,12 @@ workspace "Just"
     IncludeDir["glad"] = "Just/vendor/glad/include"
     IncludeDir["imgui"] = "Just/vendor/imgui"
 
-    include "Just/vendor/glfw"
-    include "Just/vendor/glad"
-    include "Just/vendor/imgui"
-
+    group "Dependencies"
+        include "Just/vendor/glfw"
+        include "Just/vendor/glad"
+        include "Just/vendor/imgui"
+    group ""
+    
     project "Just"
         location "Just"
         kind "SharedLib"
