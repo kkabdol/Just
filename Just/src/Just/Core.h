@@ -29,3 +29,10 @@
 #define BIT(x) (1 << x)
 
 #define JST_BIND_EVENT_FN(fn) std::bind(&fn, this, std::placeholders::_1)
+
+#ifdef JST_PLATFORM_WINDOWS
+#define JST_STRINGIZE( L )     #L 
+#define JST_MAKESTRING( M, L ) M(L)
+#define JST_LINE JST_MAKESTRING( JST_STRINGIZE, __LINE__ )
+#define JST_WARNING __FILE__ "(" JST_LINE ") : Warning: "
+#endif // JST_PLATFORM_WINDOWS

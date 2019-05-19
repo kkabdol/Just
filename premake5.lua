@@ -81,6 +81,8 @@ workspace "Just"
                 ("{COPY} %{cfg.buildtarget.relpath} \"../bin/" .. outputdir .. "/Sandbox/\"")
             }
 
+            buildoptions { "/Zc:__cplusplus" }
+
         filter "configurations:Debug"
             defines "JST_DEBUG"
             runtime "Debug"
@@ -132,6 +134,8 @@ workspace "Just"
                 "JST_PLATFORM_WINDOWS",
 				"JST_DYNAMIC_LINK"
             }
+
+            buildoptions { "/Zc:__cplusplus" }
 
         filter "configurations:Debug"
             defines "JST_DEBUG"
