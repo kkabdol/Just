@@ -43,8 +43,6 @@ namespace Just
 		EventDispatcher dispatcher( e );
 		dispatcher.Dispatch< WindowCloseEvent >( JST_BIND_EVENT_FN( Application::OnWindowClose ) );
 
-		JST_CORE_TRACE( "{0}", e );
-
 		for( auto it = m_LayerStack.end(); it != m_LayerStack.begin(); )
 		{
 			( *--it )->OnEvent( e );

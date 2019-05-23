@@ -8,12 +8,20 @@ namespace Just
 {
 	Input* Input::s_Instance = new WindowsInput();
 
-	bool Just::WindowsInput::GetKeyPressedImpl( int keycode )
+	bool Just::WindowsInput::IsKeyPressedImpl( int keycode )
 	{
 		auto window = static_cast< GLFWwindow* >( Application::Get().GetWindow().GetNativeWindow() );
 		auto state = glfwGetKey( window, keycode );
 		return state == GLFW_PRESS;
 	}
+
+	bool WindowsInput::IsMouseButtonPressedImpl( int button )
+	{
+		auto window = static_cast< GLFWwindow* >( Application::Get().GetWindow().GetNativeWindow() );
+		auto state = glfwGetMouseButton( window, button );
+		return state == GLFW_PRESS;
+	}
+
 	std::pair<float, float> WindowsInput::GetMousePositionImpl()
 	{
 		auto window = static_cast< GLFWwindow* >( Application::Get().GetWindow().GetNativeWindow() );
@@ -22,6 +30,7 @@ namespace Just
 
 		return { static_cast< float >( xpos ), static_cast< float >( ypos ) };
 	}
+
 	float WindowsInput::GetMouseXImpl()
 	{
 	#if ( __cplusplus >= 201703L )
@@ -33,6 +42,7 @@ namespace Just
 		return std::get<0>( v );
 	#endif
 	}
+
 	float WindowsInput::GetMouseYImpl()
 	{
 	#if ( __cplusplus >= 201703L )

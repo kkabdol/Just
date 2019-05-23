@@ -10,12 +10,23 @@ public:
 
 	virtual void OnUpdate() override
 	{
-		JST_INFO( "ExampleLayer::Update" );
+		if( Just::Input::IsKeyPressed( JST_KEY_TAB ) )
+		{
+			JST_TRACE( "Tab key is pressed( poll )!" );
+		}
 	}
 
 	virtual void OnEvent( Just::Event& event ) override
 	{
-		JST_TRACE( "{0}", event );
+		if( event.GetEventType() == Just::EventType::KeyPressed )
+		{
+			Just::KeyPressedEvent& e = ( Just::KeyPressedEvent& )event;
+			if ( e.GetKeyCode() == JST_KEY_TAB )
+			{
+				JST_TRACE( "Tab key is pressed( event )!" );
+			}
+			JST_TRACE( "{0}", ( char )e.GetKeyCode() );
+		}
 	}
 };
 
