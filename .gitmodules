@@ -7,3 +7,6 @@
 [submodule "Just/vendor/imgui"]
 	path = Just/vendor/imgui
 	url = https://github.com/kkabdol/imgui.git
+[submodule "Just/vendor/glm"]
+	path = Just/vendor/glm
+	url = https://github.com/kkabdol/glm.git

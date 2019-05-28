@@ -16,6 +16,7 @@ workspace "Just"
     IncludeDir["glfw"] = "Just/vendor/glfw/include"
     IncludeDir["glad"] = "Just/vendor/glad/include"
     IncludeDir["imgui"] = "Just/vendor/imgui"
+	IncludeDir["glm"] = "Just/vendor/glm"
 
     group "Dependencies"
         include "Just/vendor/glfw"
@@ -38,7 +39,9 @@ workspace "Just"
         files
         {
             "%{prj.name}/src/**.h",
-            "%{prj.name}/src/**.cpp"
+            "%{prj.name}/src/**.cpp",
+			"%{prj.name}/vendor/glm/glm/**.hpp",
+			"%{prj.name}/vendor/glm/glm/**.inl"
         }
 
         defines
@@ -52,7 +55,8 @@ workspace "Just"
             "%{prj.name}/vendor/spdlog/include",
             "%{IncludeDir.glfw}",
             "%{IncludeDir.glad}",
-            "%{IncludeDir.imgui}"
+            "%{IncludeDir.imgui}",
+			"%{IncludeDir.glm}"
         }
 
         links
@@ -118,7 +122,8 @@ workspace "Just"
         includedirs
         {
             "Just/vendor/spdlog/include",
-            "Just/src"
+            "Just/src",
+			"%{IncludeDir.glm}"
         }
 
         links
