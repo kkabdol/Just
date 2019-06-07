@@ -123,6 +123,7 @@ workspace "Just"
         {
             "Just/vendor/spdlog/include",
             "Just/src",
+			"%{IncludeDir.imgui}",
 			"%{IncludeDir.glm}"
         }
 

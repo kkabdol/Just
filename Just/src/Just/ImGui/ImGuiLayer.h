@@ -10,25 +10,17 @@ namespace Just
 	class JUST_API ImGuiLayer : public Layer
 	{
 	public:
+		static void Begin();
+		static void End();
+
 		ImGuiLayer();
 		~ImGuiLayer();
 
 		virtual void OnAttach() override;
 		virtual void OnDetach() override;
-		virtual void OnUpdate() override;
-		virtual void OnEvent( Event& event ) override;
+		virtual void OnImGuiRender() override;
 	private:
-		void UpdateGamepads();
-
-		bool OnKeyPressed( KeyPressedEvent& e );
-		bool OnKeyReleased( KeyReleasedEvent& e );
-		bool OnKeyTyped( KeyTypedEvent& e );
-		bool OnMouseButtonPressed( MouseButtonPressedEvent& e );
-		bool OnMouseButtonReleased( MouseButtonReleasedEvent& e );
-		bool OnMouseMoved( MouseMovedEvent& e );
-		bool OnMouseScrolled( MouseScrolledEvent& e );
-		bool OnWindowResized( WindowResizeEvent& e );
-
+		
 		float m_Time = 0.0f;
 	};
 }

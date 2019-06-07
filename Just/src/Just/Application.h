@@ -6,6 +6,8 @@
 #include "Just/LayerStack.h"
 #include "Just/Events/ApplicationEvent.h"
 
+#include "Just/ImGui/ImGuiLayer.h"
+
 #pragma warning( push )
 #pragma warning( disable : 4251 )
 namespace Just

@@ -16,6 +16,8 @@ namespace Just
 
 		m_Window = std::unique_ptr< Window >( Window::Create() );
 		m_Window->SetEventCallback( JST_BIND_EVENT_FN( Application::OnEvent ) );
+
+		PushOverlay( new ImGuiLayer );
 	}
 
 	Application::~Application()
@@ -29,10 +31,17 @@ namespace Just
 			glClearColor( 1, 0, 1, 1 );
 			glClear( GL_COLOR_BUFFER_BIT );
 
-			for( auto it = m_LayerStack.begin(); it != m_LayerStack.end(); ++it )
+			for( Layer* layer : m_LayerStack )
 			{
-				( *it )->OnUpdate();
+				layer->OnUpdate();
 			}
+
+			ImGuiLayer::Begin();
+			for( Layer* layer : m_LayerStack )
+			{
+				layer->OnImGuiRender();
+			}
+			ImGuiLayer::End();
 
 			m_Window->OnUpdate();
 		}
