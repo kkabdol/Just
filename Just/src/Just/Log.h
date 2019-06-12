@@ -22,7 +22,7 @@ namespace Just
 }
 
 // Core log macros
-#ifdef JST_BUILD_DLL
+#ifdef JST_BUILD_LIBRARY
 #define JST_CORE_TRACE(...)		::Just::Log::GetCoreLogger()->trace(__VA_ARGS__)
 #define JST_CORE_INFO(...)		::Just::Log::GetCoreLogger()->info(__VA_ARGS__)
 #define JST_CORE_WARN(...)		::Just::Log::GetCoreLogger()->warn(__VA_ARGS__)
@@ -34,7 +34,7 @@ namespace Just
 #define JST_CORE_WARN(...)
 #define JST_CORE_ERROR(...)
 #define JST_CORE_FATAL(...)
-#endif // JST_BUILD_DLL
+#endif // JST_BUILD_LIBRARY
 
 // Client log macros
 #define JST_TRACE(...)	::Just::Log::GetClientLogger()->trace(__VA_ARGS__)

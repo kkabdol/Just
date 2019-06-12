@@ -37,7 +37,6 @@ namespace Just
 		auto[ x, y ] = GetMousePositionImpl();
 		return x;
 	#else
-	#pragma message ( JST_WARNING "C++17 is preferable." )
 		auto v = GetMousePositionImpl();
 		return std::get<0>( v );
 	#endif
@@ -49,7 +48,6 @@ namespace Just
 		auto[ x, y ] = GetMousePositionImpl();
 		return y;
 	#else
-	#pragma message ( JST_WARNING "C++17 is preferable." )
 		auto v = GetMousePositionImpl();
 		return std::get<1>( v );
 	#endif

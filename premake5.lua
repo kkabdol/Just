@@ -26,9 +26,11 @@ workspace "Just"
     
     project "Just"
         location "Just"
-        kind "SharedLib"
+        kind "StaticLib"
         language "C++"
-
+        cppdialect "C++17"
+        staticruntime "on"
+            
         targetdir ("%{wks.location}/bin/" .. outputdir .. "/%{prj.name}")
         debugdir ("%{wks.location}/bin/" .. outputdir .. "/%{prj.name}")
         objdir ("%{wks.location}/bin-int/" .. outputdir .. "/%{prj.name}")
@@ -68,21 +70,13 @@ workspace "Just"
         }
 
         filter "system:windows"
-            cppdialect "Default"
-            staticruntime "off"
             systemversion "latest"
 
             defines
             {
                 "JST_PLATFORM_WINDOWS",
-				"JST_DYNAMIC_LINK",
-                "JST_BUILD_DLL",
+				"JST_BUILD_LIBRARY",
                 "GLFW_INCLUDE_NONE"
-            }
-
-            postbuildcommands
-            {
-                ("{COPY} %{cfg.buildtarget.relpath} \"../bin/" .. outputdir .. "/Sandbox/\"")
             }
 
             buildoptions { "/Zc:__cplusplus" }
@@ -106,8 +100,8 @@ workspace "Just"
         location "Sandbox"
         kind "ConsoleApp"
         language "C++"
-        cppdialect "Default"
-        staticruntime "off"
+        cppdialect "C++17"
+        staticruntime "on"
 
         targetdir ("%{wks.location}/bin/" .. outputdir .. "/%{prj.name}")
         debugdir ("%{wks.location}/bin/" .. outputdir .. "/%{prj.name}")
@@ -136,8 +130,7 @@ workspace "Just"
 
             defines
             {
-                "JST_PLATFORM_WINDOWS",
-				"JST_DYNAMIC_LINK"
+                "JST_PLATFORM_WINDOWS"
             }
 
             buildoptions { "/Zc:__cplusplus" }
