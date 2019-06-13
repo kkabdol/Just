@@ -1,5 +1,6 @@
 #pragma once
 #include "Just/Window.h"
+#include "Just/Renderer/GraphicsContext.h"
 
 #include <GLFW/glfw3.h>
 
@@ -29,6 +30,7 @@ namespace Just
 
 	private:
 		GLFWwindow* m_Window;
+		std::unique_ptr< GraphicsContext > m_Context;
 
 		struct WindowData
 		{
