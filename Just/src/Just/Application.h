@@ -8,6 +8,8 @@
 
 #include "Just/ImGui/ImGuiLayer.h"
 
+#include "Just/Renderer/Shader.h"
+
 #pragma warning( push )
 #pragma warning( disable : 4251 )
 namespace Just
@@ -40,6 +42,7 @@ namespace Just
 		LayerStack m_LayerStack;
 
 		unsigned int m_VertexArray, m_VertexBuffer, m_IndexBuffer;
+		std::unique_ptr<Shader> m_Shader;
 
 		static Application* s_Instance;
 	};
