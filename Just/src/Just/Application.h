@@ -9,6 +9,7 @@
 #include "Just/ImGui/ImGuiLayer.h"
 
 #include "Just/Renderer/Shader.h"
+#include "Just/Renderer/Buffer.h"
 
 #pragma warning( push )
 #pragma warning( disable : 4251 )
@@ -41,8 +42,10 @@ namespace Just
 		bool m_Running = true;
 		LayerStack m_LayerStack;
 
-		unsigned int m_VertexArray, m_VertexBuffer, m_IndexBuffer;
+		unsigned int m_VertexArray;
 		std::unique_ptr<Shader> m_Shader;
+		std::unique_ptr<VertexBuffer> m_VertexBuffer;
+		std::unique_ptr<IndexBuffer> m_IndexBuffer;
 
 		static Application* s_Instance;
 	};
