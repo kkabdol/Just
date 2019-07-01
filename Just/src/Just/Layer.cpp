@@ -7,9 +7,4 @@ namespace Just
 		: m_DebugName( debugName )
 	{
 	}
-
-
-	Layer::~Layer()
-	{
-	}
 }

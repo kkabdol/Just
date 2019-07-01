@@ -64,10 +64,6 @@ namespace Just
 		m_Shader.reset( new Shader( vertexSrc, fragmentSrc ) );
 	}
 
-	Application::~Application()
-	{
-	}
-
 	void Application::Run()
 	{
 		while( m_Running )
