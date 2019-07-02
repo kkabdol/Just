@@ -12,8 +12,12 @@ namespace Just
 
 		virtual void Bind() const;
 		virtual void Unbind() const;
+
+		virtual const BufferLayout& GetLayout() const { return m_Layout; };
+		virtual void SetLayout( const BufferLayout& layout ) { m_Layout = layout; }
 	private:
 		uint32_t m_BufferID;
+		BufferLayout m_Layout;
 	};
 
 	class OpenGLIndexBuffer : public IndexBuffer
