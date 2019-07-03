@@ -3,10 +3,6 @@
 
 namespace Just
 {
-	LayerStack::LayerStack()
-	{
-	}
-
 	LayerStack::~LayerStack()
 	{
 		for( Layer* layer : m_Layers )
@@ -19,6 +15,7 @@ namespace Just
 	{
 		m_Layers.insert(  m_Layers.begin() + m_LayerInsertIndex, layer );
 		m_LayerInsertIndex++;
+		layer->OnAttach();
 	}
 
 	void Just::LayerStack::PushOverlay( Layer * overlay )
@@ -33,6 +30,7 @@ namespace Just
 		auto it = std::find( begin, end, layer );
 		if( it != end )
 		{
+			layer->OnDetach();
 			m_Layers.erase( it );
 			m_LayerInsertIndex--;
 		}
@@ -45,6 +43,7 @@ namespace Just
 		auto it = std::find( begin, end, overlay );
 		if( it != end )
 		{
+			overlay->OnDetach();
 			m_Layers.erase( it );
 		}
 	}
