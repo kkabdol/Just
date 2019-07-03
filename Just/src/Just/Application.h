@@ -10,6 +10,7 @@
 
 #include "Just/Renderer/Shader.h"
 #include "Just/Renderer/Buffer.h"
+#include "Just/Renderer/VertexArray.h"
 
 #pragma warning( push )
 #pragma warning( disable : 4251 )
@@ -42,12 +43,14 @@ namespace Just
 		bool m_Running = true;
 		LayerStack m_LayerStack;
 
-		unsigned int m_VertexArray;
-		std::unique_ptr<Shader> m_Shader;
-		std::unique_ptr<VertexBuffer> m_VertexBuffer;
-		std::unique_ptr<IndexBuffer> m_IndexBuffer;
-
+		std::shared_ptr<Shader> m_Shader;
+		std::shared_ptr<VertexArray> m_VertexArray;
+		
 		static Application* s_Instance;
+
+		// test
+		std::shared_ptr<Shader> m_BlueShader;
+		std::shared_ptr<VertexArray> m_SquareVA;
 	};
 
 	// To be defined in CLIENT
