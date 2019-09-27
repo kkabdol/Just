@@ -27,7 +27,7 @@ namespace Just
 #define JST_CORE_INFO(...)		::Just::Log::GetCoreLogger()->info(__VA_ARGS__)
 #define JST_CORE_WARN(...)		::Just::Log::GetCoreLogger()->warn(__VA_ARGS__)
 #define JST_CORE_ERROR(...)		::Just::Log::GetCoreLogger()->error(__VA_ARGS__)
-#define JST_CORE_FATAL(...)		::Just::Log::GetCoreLogger()->critical(__VA_ARGS__)
+#define JST_CORE_CRITICAL(...)	::Just::Log::GetCoreLogger()->critical(__VA_ARGS__)
 #else
 #define JST_CORE_TRACE(...)
 #define JST_CORE_INFO(...)
@@ -37,8 +37,8 @@ namespace Just
 #endif // JST_BUILD_LIBRARY
 
 // Client log macros
-#define JST_TRACE(...)	::Just::Log::GetClientLogger()->trace(__VA_ARGS__)
-#define JST_INFO(...)	::Just::Log::GetClientLogger()->info(__VA_ARGS__)
-#define JST_WARN(...)	::Just::Log::GetClientLogger()->warn(__VA_ARGS__)
-#define JST_ERROR(...)	::Just::Log::GetClientLogger()->error(__VA_ARGS__)
-#define JST_FATAL(...)	::Just::Log::GetClientLogger()->critical(__VA_ARGS__)
+#define JST_TRACE(...)		::Just::Log::GetClientLogger()->trace(__VA_ARGS__)
+#define JST_INFO(...)		::Just::Log::GetClientLogger()->info(__VA_ARGS__)
+#define JST_WARN(...)		::Just::Log::GetClientLogger()->warn(__VA_ARGS__)
+#define JST_ERROR(...)		::Just::Log::GetClientLogger()->error(__VA_ARGS__)
+#define JST_CRITICAL(...)	::Just::Log::GetClientLogger()->critical(__VA_ARGS__)
