@@ -12,6 +12,8 @@
 #include "Just/Renderer/Buffer.h"
 #include "Just/Renderer/VertexArray.h"
 
+#include "Just/Renderer/OrthographicCamera.h"
+
 #pragma warning( push )
 #pragma warning( disable : 4251 )
 namespace Just
@@ -51,6 +53,8 @@ namespace Just
 		// test
 		std::shared_ptr<Shader> m_BlueShader;
 		std::shared_ptr<VertexArray> m_SquareVA;
+
+		OrthographicCamera m_Camera;
 	};
 
 	// To be defined in CLIENT

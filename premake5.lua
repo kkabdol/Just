@@ -117,7 +117,8 @@ workspace "Just"
         {
             "Just/vendor/spdlog/include",
             "Just/src",
-            "Just/vendor"
+            "Just/vendor",
+            "%{IncludeDir.glm}"
         }
 
         links
