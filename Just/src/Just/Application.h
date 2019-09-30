@@ -45,16 +45,7 @@ namespace Just
 		bool m_Running = true;
 		LayerStack m_LayerStack;
 
-		std::shared_ptr<Shader> m_Shader;
-		std::shared_ptr<VertexArray> m_VertexArray;
-		
 		static Application* s_Instance;
-
-		// test
-		std::shared_ptr<Shader> m_BlueShader;
-		std::shared_ptr<VertexArray> m_SquareVA;
-
-		OrthographicCamera m_Camera;
 	};
 
 	// To be defined in CLIENT
