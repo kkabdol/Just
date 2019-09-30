@@ -3,6 +3,8 @@
 #include "Just/Core.h"
 #include "Just/Events/Event.h"
 
+#include "Just/Core/Timestep.h"
+
 namespace Just
 {
 	class JUST_API Layer
@@ -13,7 +15,7 @@ namespace Just
 
 		virtual void OnAttach() {}
 		virtual void OnDetach() {}
-		virtual void OnUpdate() {}
+		virtual void OnUpdate( const Timestep& ts ) {}
 		virtual void OnImGuiRender() {}
 		virtual void OnEvent( Event& event ) {}
 

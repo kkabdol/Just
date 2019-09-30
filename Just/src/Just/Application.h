@@ -6,13 +6,9 @@
 #include "Just/LayerStack.h"
 #include "Just/Events/ApplicationEvent.h"
 
+#include "Just/Core/Timestep.h"
+
 #include "Just/ImGui/ImGuiLayer.h"
-
-#include "Just/Renderer/Shader.h"
-#include "Just/Renderer/Buffer.h"
-#include "Just/Renderer/VertexArray.h"
-
-#include "Just/Renderer/OrthographicCamera.h"
 
 #pragma warning( push )
 #pragma warning( disable : 4251 )
@@ -41,10 +37,13 @@ namespace Just
 	private:
 		bool OnWindowClose( WindowCloseEvent& e );
 
+	private:
 		std::unique_ptr< Window > m_Window;
 		bool m_Running = true;
 		LayerStack m_LayerStack;
+		float m_LastFrameTime = 0.0f;
 
+	private:
 		static Application* s_Instance;
 	};
 
